@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {Map,Search,MapPin,QrCode,Headset,Building2,Network,Users,Bell,MessageCircle,Mail,Menu,X,UserRound} from "lucide-react";
+import {Map,Search,MapPin,QrCode,Headset,Building2,Network,Users,Bell,MessageCircle,Mail,Menu,X} from "lucide-react";
 import { useState } from "react";
 import "./LandingPage.css";
 
@@ -29,14 +29,8 @@ export default function LandingPage() {
             <Link className="nav-item" href="/find-location" onClick={closeMenu}>Find Location</Link>
             <Link className="nav-item" href="/scan-qr" onClick={closeMenu}>Scan QR</Link>
             <Link className="nav-item" href="/help" onClick={closeMenu}>Help</Link>
-            <Link className="admin-button mobile-admin" href="/admin/login" onClick={closeMenu}>
-              <UserRound size={18} /> Admin Login
-            </Link>
           </nav>
 
-          <Link className="admin-button desktop-admin" href="/admin/login">
-            <UserRound size={19} /> Admin Login
-          </Link>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
             {menuOpen ? <X /> : <Menu />}
           </button>
