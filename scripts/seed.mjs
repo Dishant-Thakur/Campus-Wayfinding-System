@@ -8,13 +8,13 @@ await edges.deleteMany({});
 
 const now = new Date();
 const nodes = [
-  { code: "gate-1", name: "Gate 1", type: "gate", keywords: ["main gate", "entrance"] },
-  { code: "gate-2", name: "Gate 2", type: "gate", keywords: [] },
-  { code: "block-32", name: "Block 32", type: "block", keywords: [] },
-  { code: "block-33", name: "Block 33", type: "block", keywords: [] },
-  { code: "block-34", name: "Block 34", type: "block", keywords: [] },
-  { code: "library", name: "Library", type: "facility", keywords: ["books"] },
-  { code: "food-court", name: "Food Court", type: "landmark", keywords: ["canteen"] },
+  { code: "gate-1", lat: 31.2535, lng: 75.702, name: "Gate 1", type: "gate", keywords: ["main gate", "entrance"] },
+  { code: "gate-2", lat: 31.257, lng: 75.708, name: "Gate 2", type: "gate", keywords: [] },
+  { code: "block-32", lat: 31.2548, lng: 75.7035, name: "Block 32", type: "block", keywords: [] },
+  { code: "block-33", lat: 31.2553, lng: 75.7045, name: "Block 33", type: "block", keywords: [] },
+  { code: "block-34", lat: 31.2558, lng: 75.7055, name: "Block 34", type: "block", keywords: [] },
+  { code: "library", lat: 31.2545, lng: 75.7028, name: "Library", type: "facility", keywords: ["books"] },
+  { code: "food-court", lat: 31.256, lng: 75.7065, name: "Food Court", type: "landmark", keywords: ["canteen"] },
 ];
 const r = await locs.insertMany(
   nodes.map((n) => ({ accessible: true, ...n, qrCode: n.code, createdAt: now, updatedAt: now, __v: 0 }))
