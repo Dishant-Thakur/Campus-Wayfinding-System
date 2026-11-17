@@ -1,0 +1,7 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import "../help/visitor.css";
+
+export default function TermsPage() {
+  return <main className="visitor-page"><header className="visitor-topbar"><Link href="/" className="visitor-back"><ArrowLeft size={18}/> Home</Link><span className="visitor-brand">Campus Wayfinding <small>Use of this demonstration</small></span><Link href="/help" className="visitor-nav-link">Help</Link></header><article className="visitor-card help-intro" style={{maxWidth:760,margin:"42px auto",padding:30}}><p className="visitor-eyebrow">DEMO TERMS</p><h1>Use this as a prototype only</h1><p className="visitor-intro">This project provides a software demonstration. Its sample buildings, rooms, gates, paths, distances, QR codes and route instructions have not been verified against the real LPU campus.</p><h2>Navigation limitations</h2><p className="visitor-intro">Do not rely on the sample map or calculated routes for travel, accessibility, emergency response, or other real-world decisions. Confirm directions and access requirements with authorized campus staff.</p><h2>Visitor requests</h2><p className="visitor-intro">The assistance form stores submissions locally in the running server. It does not notify staff or promise a response. Do not include sensitive or urgent information.</p><p className="visitor-intro">Before public use, replace this notice with terms approved by the campus operator and publish verified location and accessibility data.</p></article></main>;
+}
