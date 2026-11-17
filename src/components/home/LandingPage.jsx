@@ -26,7 +26,7 @@ export default function LandingPage() {
           <nav className={`main-nav ${menuOpen ? "nav-open" : ""}`}>
             <Link className="nav-item selected" href="/" onClick={closeMenu}>Home</Link>
             <Link className="nav-item" href="/campus-map" onClick={closeMenu}>Campus Map</Link>
-            <Link className="nav-item" href="/find-location" onClick={closeMenu}>Find Location</Link>
+            <Link className="nav-item" href="/campus-map" onClick={closeMenu}>Find Location</Link>
             <Link className="nav-item" href="/scan-qr" onClick={closeMenu}>Scan QR</Link>
             <Link className="nav-item" href="/help" onClick={closeMenu}>Help</Link>
           </nav>
@@ -41,12 +41,12 @@ export default function LandingPage() {
         <section className="hero">
           <div className="hero-copy">
             <h1>Find Your Way<br />Around <span>LPU Campus</span></h1>
-            <p>An interactive campus navigation system to easily<br className="desktop-break" />
-              find blocks, classrooms, labs, and facilities with<br className="desktop-break" />
-              shortest and accessible routes.</p>
+            <p>Search a shared sample directory of campus places,<br className="desktop-break" />
+              plan gate-to-room routes, scan destination QR codes,<br className="desktop-break" />
+              and request help when you need it.</p>
             <div className="hero-actions">
               <Link href="/campus-map" className="primary-action"><Map size={25} /> Explore Campus Map <span>→</span></Link>
-              <Link href="/find-location" className="secondary-action"><Search size={25} /> Find a Location</Link>
+              <Link href="/campus-map" className="secondary-action"><Search size={25} /> Find a Location</Link>
             </div>
           </div>
           <div className="hero-photo" role="img" aria-label="Lovely Professional University campus" />
@@ -60,7 +60,7 @@ export default function LandingPage() {
 
           <article className="feature-card">
             <div className="feature-icon"><Network size={43} /></div>
-            <div><h2>Smart Route Planning</h2><p>Get the shortest and<br /> accessible routes.</p></div>
+            <div><h2>Smart Route Planning</h2><p>View route steps across a<br /> connected sample path network.</p></div>
           </article>
 
           <article className="feature-card">
@@ -75,10 +75,10 @@ export default function LandingPage() {
         </section>
 
         <section className="stats">
-          <div className="stat-item"><Building2 /><div><strong>30+</strong><span>Academic &amp; Admin Blocks</span></div></div>
-          <div className="stat-item"><MapPin /><div><strong>1,000+</strong><span>Mapped Locations</span></div></div>
-          <div className="stat-item"><Network /><div><strong>2,000+</strong><span>Navigation Points</span></div></div>
-          <div className="stat-item"><Users /><div><strong>500+</strong><span>Daily Campus Users</span></div></div>
+          <div className="stat-item"><Building2 /><div><strong>5</strong><span>Sample Campus Gates</span></div></div>
+          <div className="stat-item"><MapPin /><div><strong>16</strong><span>Sample Destinations</span></div></div>
+          <div className="stat-item"><Network /><div><strong>4</strong><span>Sample Room Codes</span></div></div>
+          <div className="stat-item"><Users /><div><strong>0</strong><span>Verified Path Segments</span></div></div>
         </section>
       </main>
 
@@ -89,12 +89,12 @@ export default function LandingPage() {
           </div>
           <div className="footer-column"><h3>Quick Links</h3>
             <Link href="/">Home</Link><Link href="/campus-map">Campus Map</Link>
-            <Link href="/find-location">Find Location</Link><Link href="/scan-qr">Scan QR</Link><Link href="/help">Help</Link>
+            <Link href="/campus-map">Find Location</Link><Link href="/scan-qr">Scan QR</Link><Link href="/help">Help</Link>
           </div>
           <div className="footer-column support-column"><h3>Support</h3>
             <Link href="/help"><Bell size={17} /> Report an Issue</Link>
             <Link href="/help"><MessageCircle size={17} /> Request Assistance</Link>
-            <a href="mailto:support@example.com"><Mail size={17} /> Contact Us</a>
+            <Link href="/help"><Mail size={17} /> Contact / request help</Link>
           </div>
           <div className="footer-column social-column"><h3>Follow LPU</h3>
             <div className="social-links">

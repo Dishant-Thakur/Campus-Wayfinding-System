@@ -19,6 +19,7 @@
 
 # production
 /build
+/data/assistance-requests.jsonl
 
 # misc
 .DS_Store
