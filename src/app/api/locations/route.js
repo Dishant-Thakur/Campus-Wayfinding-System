@@ -27,4 +27,4 @@ export const POST = handle(async (req) => {
   if (!body.qrCode && body.code) body.qrCode = String(body.code).toLowerCase();
   const data = await Location.create(body);
   return Response.json({ data }, { status: 201 });
-});
+}); 

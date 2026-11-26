@@ -47,6 +47,7 @@ export default function CampusMap() {
     import("maplibre-gl").then((m) => {
       if (cancelled || !el.current) return;
       maplibre.current = m.default || m;
+      maplibre.current.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
       map = new maplibre.current.Map({ container: el.current, style: STYLE, center: CENTER, zoom: 15 });
       map.addControl(new maplibre.current.NavigationControl(), "bottom-right");
       map.on("load", () => setMapReady(true));
