@@ -1,0 +1,773 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.4 2390de5a",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-26T08:06:39Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 1406003072,
+      "lat": 31.2579343,
+      "lon": 75.7163944,
+      "tags": {
+        "building": "yes",
+        "name": "Punjab Dome Mills"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1406003115,
+      "lat": 31.2549211,
+      "lon": 75.7046191,
+      "tags": {
+        "amenity": "university",
+        "name": "LPU"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12031088561,
+      "lat": 31.2517336,
+      "lon": 75.697562,
+      "tags": {
+        "ceremonial_gate": "torii",
+        "man_made": "ceremonial_gate",
+        "name": "Green valley main gate"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12035501987,
+      "lat": 31.2547532,
+      "lon": 75.6983864,
+      "tags": {
+        "leisure": "fitness_centre",
+        "name": "golden gym"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12048123536,
+      "lat": 31.2518723,
+      "lon": 75.6979603,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Oven Express"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12050045469,
+      "lat": 31.2518001,
+      "lon": 75.6979793,
+      "tags": {
+        "leisure": "fitness_centre",
+        "name": "MG fitness gym"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12050896059,
+      "lat": 31.2536772,
+      "lon": 75.6991225,
+      "tags": {
+        "addr:city": "Phagwara",
+        "addr:district": "kapurthala",
+        "addr:postcode": "144411",
+        "addr:street": "4th floor,ssj complex,chiheru khusropur link road",
+        "leisure": "fitness_centre",
+        "name": "The Target Gym",
+        "sport": "gymnastics"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12067651796,
+      "lat": 31.2520778,
+      "lon": 75.697735,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "La Kitchen Ette"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12067651797,
+      "lat": 31.252189,
+      "lon": 75.6977147,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Dakshinam Cafe"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12067711970,
+      "lat": 31.2545278,
+      "lon": 75.6990707,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Amit Food"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12067711973,
+      "lat": 31.2542408,
+      "lon": 75.6989414,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Friend's Cafe"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12067711978,
+      "lat": 31.2544554,
+      "lon": 75.6991887,
+      "tags": {
+        "amenity": "bank",
+        "atm": "yes",
+        "brand": "Punjab National Bank",
+        "name": "Punjab National Bank"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12067711979,
+      "lat": 31.2540352,
+      "lon": 75.6992875,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "House Of Shakes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12067711983,
+      "lat": 31.2541813,
+      "lon": 75.6990812,
+      "tags": {
+        "amenity": "bank",
+        "atm": "yes",
+        "brand": "HDFC Bank",
+        "name": "HDFC Bank",
+        "short_name": "HDFC"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12067741295,
+      "lat": 31.2542528,
+      "lon": 75.6948555,
+      "tags": {
+        "amenity": "restaurant",
+        "building": "yes",
+        "name": "Apna Chai Wala"
+      }
+    },
+    {
+      "type": "way",
+      "id": 354743583,
+      "center": {
+        "lat": 31.2586388,
+        "lon": 75.7088212
+      },
+      "tags": {
+        "building": "yes",
+        "building:levels": "5",
+        "name": "Lovely Institute Of Management"
+      }
+    },
+    {
+      "type": "way",
+      "id": 354755644,
+      "center": {
+        "lat": 31.257918,
+        "lon": 75.7069431
+      },
+      "tags": {
+        "building": "yes",
+        "building:levels": "7",
+        "name": "Lovely Institute of Technology"
+      }
+    },
+    {
+      "type": "way",
+      "id": 354830243,
+      "center": {
+        "lat": 31.2575791,
+        "lon": 75.7072785
+      },
+      "tags": {
+        "building": "yes",
+        "building:levels": "5",
+        "name": "Lovely Institute of Pharmacy"
+      }
+    },
+    {
+      "type": "way",
+      "id": 422551917,
+      "center": {
+        "lat": 31.2482084,
+        "lon": 75.7021177
+      },
+      "tags": {
+        "building:levels": "1",
+        "leisure": "pitch",
+        "name": "voll",
+        "sport": "volleyball",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "type": "way",
+      "id": 422553585,
+      "center": {
+        "lat": 31.2557793,
+        "lon": 75.7103738
+      },
+      "tags": {
+        "amenity": "university",
+        "name": "LPU Ground"
+      }
+    },
+    {
+      "type": "way",
+      "id": 646987790,
+      "center": {
+        "lat": 31.2543222,
+        "lon": 75.6964835
+      },
+      "tags": {
+        "highway": "residential",
+        "name": "Law Gate Rd"
+      }
+    },
+    {
+      "type": "way",
+      "id": 752027029,
+      "center": {
+        "lat": 31.2524666,
+        "lon": 75.6958686
+      },
+      "tags": {
+        "addr:city": "Phagwara",
+        "addr:district": "kapurthala",
+        "addr:postcode": "144411",
+        "landuse": "residential",
+        "name": "Law gate",
+        "residential": "rural"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1299137613,
+      "center": {
+        "lat": 31.2520296,
+        "lon": 75.6988355
+      },
+      "tags": {
+        "addr:city": "Phagwara",
+        "addr:district": "kapurthala",
+        "addr:postcode": "144411",
+        "building": "apartments",
+        "name": "Elem apartment",
+        "tourism": "hostel"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1299447331,
+      "center": {
+        "lat": 31.2521729,
+        "lon": 75.6986134
+      },
+      "tags": {
+        "addr:city": "Phagwara",
+        "addr:district": "kapurthala",
+        "addr:housenumber": "nea diya apartemnt",
+        "addr:postcode": "144411",
+        "addr:street": "law gate rd, opp green valley",
+        "building": "yes",
+        "name": "prime apartment 2",
+        "tourism": "hostel"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1299447332,
+      "center": {
+        "lat": 31.2522732,
+        "lon": 75.6986059
+      },
+      "tags": {
+        "addr:city": "Phagwara",
+        "addr:district": "kapurthala",
+        "addr:housenumber": "opp green valley",
+        "addr:postcode": "144411",
+        "addr:street": "law gate rd",
+        "building": "yes",
+        "name": "Diya apartment",
+        "tourism": "hostel"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1299813019,
+      "center": {
+        "lat": 31.2548274,
+        "lon": 75.6985538
+      },
+      "tags": {
+        "addr:city": "Phagwara",
+        "addr:district": "kapurthala",
+        "addr:postcode": "144411",
+        "addr:street": "near golden gym , law gate rd",
+        "amenity": "restaurant",
+        "building": "yes",
+        "name": "desi & delicious"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687852,
+      "center": {
+        "lat": 31.2522259,
+        "lon": 75.6990272
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Dimple Apartment",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687853,
+      "center": {
+        "lat": 31.2522136,
+        "lon": 75.6989142
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Avjot PG",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687860,
+      "center": {
+        "lat": 31.2522235,
+        "lon": 75.6992608
+      },
+      "tags": {
+        "building": "yes",
+        "name": "karan pg 1",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687861,
+      "center": {
+        "lat": 31.252103,
+        "lon": 75.6996247
+      },
+      "tags": {
+        "building": "yes",
+        "name": "the grand castle"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687862,
+      "center": {
+        "lat": 31.2520941,
+        "lon": 75.699517
+      },
+      "tags": {
+        "building": "yes",
+        "name": "pheonix apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687864,
+      "center": {
+        "lat": 31.2520727,
+        "lon": 75.6992109
+      },
+      "tags": {
+        "building": "yes",
+        "name": "victoria apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687865,
+      "center": {
+        "lat": 31.2520848,
+        "lon": 75.699322
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Sanamdeep Apartments",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687866,
+      "center": {
+        "lat": 31.2520776,
+        "lon": 75.6992656
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Sanamdeep apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687867,
+      "center": {
+        "lat": 31.2520944,
+        "lon": 75.6992792
+      },
+      "tags": {
+        "amenity": "taxi",
+        "name": "lavish auto stand",
+        "taxi_vehicle": "auto_rickshaw"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687871,
+      "center": {
+        "lat": 31.2522383,
+        "lon": 75.6992675
+      },
+      "tags": {
+        "building": "yes",
+        "name": "karan pg 2",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687888,
+      "center": {
+        "lat": 31.2515419,
+        "lon": 75.6973582
+      },
+      "tags": {
+        "building": "apartments",
+        "name": "Simar Tower",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687891,
+      "center": {
+        "lat": 31.2511237,
+        "lon": 75.6967655
+      },
+      "tags": {
+        "building": "yes",
+        "leisure": "fitness_centre",
+        "name": "DB fitness studio"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687901,
+      "center": {
+        "lat": 31.2517264,
+        "lon": 75.6958973
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Kang Apartment",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687925,
+      "center": {
+        "lat": 31.2536561,
+        "lon": 75.6990575
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Ssj Complex"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687926,
+      "center": {
+        "lat": 31.2541001,
+        "lon": 75.6997391
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "building": "yes",
+        "name": "dogra dhaba"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687927,
+      "center": {
+        "lat": 31.25391,
+        "lon": 75.6993657
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Lally apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300687931,
+      "center": {
+        "lat": 31.2543527,
+        "lon": 75.6995011
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Ten2Nine",
+        "shop": "bakery"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300700301,
+      "center": {
+        "lat": 31.2542573,
+        "lon": 75.6996101
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Simar Land Promoters",
+        "office": "property_management"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300700302,
+      "center": {
+        "lat": 31.2542847,
+        "lon": 75.6995371
+      },
+      "tags": {
+        "amenity": "cafe",
+        "building": "yes",
+        "name": "Kulhad Masti"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300700303,
+      "center": {
+        "lat": 31.2543985,
+        "lon": 75.699414
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "building": "yes",
+        "name": "Ghost Shooter"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300700306,
+      "center": {
+        "lat": 31.2546108,
+        "lon": 75.698987
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "building": "yes",
+        "name": "Majlis Restaurant"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300700350,
+      "center": {
+        "lat": 31.252755,
+        "lon": 75.6968571
+      },
+      "tags": {
+        "building": "yes",
+        "name": "sharma pg",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300759653,
+      "center": {
+        "lat": 31.2543406,
+        "lon": 75.6974861
+      },
+      "tags": {
+        "building": "yes",
+        "name": "green view pg",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300759654,
+      "center": {
+        "lat": 31.2545689,
+        "lon": 75.6974154
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "building": "yes",
+        "name": "govinda kitchen"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300759655,
+      "center": {
+        "lat": 31.2546257,
+        "lon": 75.6974091
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "building": "yes",
+        "name": "the fat chef"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300759683,
+      "center": {
+        "lat": 31.2533142,
+        "lon": 75.696946
+      },
+      "tags": {
+        "building": "yes",
+        "name": "DPS Apartment",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300759704,
+      "center": {
+        "lat": 31.2537579,
+        "lon": 75.6956101
+      },
+      "tags": {
+        "air_conditioning": "yes",
+        "building": "yes",
+        "internet_access:fee": "yes",
+        "name": "Red Apple Living",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1300871628,
+      "center": {
+        "lat": 31.2534672,
+        "lon": 75.6953919
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Savannah Homes",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1301072899,
+      "center": {
+        "lat": 31.2553192,
+        "lon": 75.6949082
+      },
+      "tags": {
+        "addr:state": "PB",
+        "addr:street": "Law Gate Rd",
+        "building": "yes",
+        "name": "Tip Top Pg",
+        "tourism": "apartment"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1303040669,
+      "center": {
+        "lat": 31.2537986,
+        "lon": 75.6952739
+      },
+      "tags": {
+        "building": "yes",
+        "leisure": "fitness_centre",
+        "name": "Fitness Edge"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1366769744,
+      "center": {
+        "lat": 31.254716,
+        "lon": 75.6975796
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "building": "yes",
+        "name": "Chayakkada - Kerala Restaurant"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 21599790,
+      "center": {
+        "lat": 31.2532741,
+        "lon": 75.7032366
+      },
+      "tags": {
+        "addr:city": "Phagwara",
+        "addr:country": "IN",
+        "addr:postcode": "144411",
+        "addr:state": "Punjab",
+        "addr:street": "Delhi Grand Trunk Road",
+        "amenity": "university",
+        "contact:whatsapp": "+91 98525 69000",
+        "education": "university",
+        "email": "info@lpu.co.in",
+        "name": "Lovely Professional University",
+        "name:en": "Lovely Professional University",
+        "name:pa": "ਲਵਲੀ ਪ੍ਰੋਫੈਸ਼ਨਲ ਯੂਨੀਵਰਸਿਟੀ",
+        "name:pnb": "لَولی یونیورسٹی",
+        "nohousenumber": "yes",
+        "official_name:en": "Lovely Professional University, Jalandhar",
+        "operator": "Lovely Group",
+        "operator:type": "private",
+        "phone": "+91 1824-517000",
+        "related_law": "Lovely Professional University Act, 2005",
+        "related_law:ref": "Punjab Act No. 25 of 2005",
+        "related_law:url": "https://www.ugc.ac.in/oldpdf/privateuni/lovelyuni.pdf",
+        "short_name:en": "LPU",
+        "start_date": "2006",
+        "type": "multipolygon",
+        "website": "https://www.lpu.in/",
+        "wikidata": "Q5756621",
+        "wikipedia": "pa:ਲਵਲੀ ਪ੍ਰੋਫ਼ੈਸ਼ਨਲ ਯੂਨੀਵਰਸਿਟੀ"
+      }
+    }
+  ]
+}

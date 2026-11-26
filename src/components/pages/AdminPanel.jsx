@@ -3,7 +3,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import SiteShell from "@/components/layout/SiteShell";
+import MapPicker from "./MapPicker";
 import { api, authHeader, clearToken, getToken } from "@/lib/client";
+
+const rad = (d) => (d * Math.PI) / 180;
+function meters(a, b) {
+  const h = Math.sin(rad(b.lat - a.lat) / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(rad(b.lng - a.lng) / 2) ** 2;
+  return 2 * 6371000 * Math.asin(Math.sqrt(h));
+}
 
 const blankLoc = { name: "", code: "", type: "block", parent: "", floor: "", lat: "", lng: "", description: "" };
 const blankEdge = { from: "", to: "", distance: "", accessible: true, instruction: "" };
@@ -16,6 +23,7 @@ export default function AdminPanel() {
   const [edges, setEdges] = useState([]);
   const [loc, setLoc] = useState(blankLoc);
   const [edge, setEdge] = useState(blankEdge);
+  const [autoConnect, setAutoConnect] = useState(true);
   const [error, setError] = useState("");
   const [ready, setReady] = useState(false);
 
@@ -67,7 +75,20 @@ export default function AdminPanel() {
     ["parent", "floor", "lat", "lng", "description"].forEach((k) => body[k] === "" && delete body[k]);
     ["floor", "lat", "lng"].forEach((k) => body[k] !== undefined && (body[k] = Number(body[k])));
     run(async () => {
-      await call("/api/locations", { method: "POST", body: JSON.stringify(body) });
+      const created = await call("/api/locations", { method: "POST", body: JSON.stringify(body) });
+      if (autoConnect && !body.parent && body.lat != null && body.lng != null) {
+        const near = locations
+          .filter((l) => !l.parent && l.lat != null && l.lng != null)
+          .map((l) => ({ l, d: meters(body, l) }))
+          .sort((a, b) => a.d - b.d)
+          .slice(0, 3);
+        for (const { l, d } of near) {
+          await call("/api/edges", {
+            method: "POST",
+            body: JSON.stringify({ from: created.data._id, to: l._id, distance: Math.max(10, Math.round(d * 1.3)), accessible: true }),
+          });
+        }
+      }
       setLoc(blankLoc);
     });
   };
@@ -127,6 +148,11 @@ export default function AdminPanel() {
 
         {tab === "locations" && (
           <>
+            <MapPicker
+              locations={locations}
+              point={{ lat: parseFloat(loc.lat), lng: parseFloat(loc.lng) }}
+              onPick={(lat, lng) => setLoc((p) => ({ ...p, lat: lat.toFixed(6), lng: lng.toFixed(6) }))}
+            />
             <form className="pg-card" onSubmit={addLocation}>
               <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 14 }}>Add Location</h2>
               <div className="pg-grid">
@@ -148,6 +174,7 @@ export default function AdminPanel() {
                 <div className="pg-field"><label>Latitude</label><input type="number" step="any" value={loc.lat} onChange={(e) => setLoc({ ...loc, lat: e.target.value })} /></div>
                 <div className="pg-field"><label>Longitude</label><input type="number" step="any" value={loc.lng} onChange={(e) => setLoc({ ...loc, lng: e.target.value })} /></div>
               </div>
+              <label className="pg-check"><input type="checkbox" checked={autoConnect} onChange={(e) => setAutoConnect(e.target.checked)} /> Auto-connect to the 3 nearest locations</label>
               <button className="pg-btn">Add Location</button>
             </form>
             <div className="pg-card pg-table-wrap">
