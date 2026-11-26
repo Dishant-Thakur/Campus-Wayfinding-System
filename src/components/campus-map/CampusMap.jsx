@@ -94,7 +94,7 @@ export default function CampusMap() {
   }, [filtered, mapReady]);
 
   return (
-    <SiteShell bare>
+    <SiteShell>
       <div className="map-layout">
         <MapSidebar items={filtered} query={query} setQuery={setQuery} type={type} setType={setType} selectedId={selected?._id} onSelect={select} />
         <div className="map-area">

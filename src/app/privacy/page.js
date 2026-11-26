@@ -1,15 +1,16 @@
 import SiteShell from "@/components/layout/SiteShell";
+import PageHeader from "@/components/layout/PageHeader";
 
-export const metadata = { title: "Privacy Policy | Campus Wayfinding" };
+export const metadata = { title: "Privacy policy | Campus Wayfinding" };
 
 export default function Page() {
   return (
     <SiteShell>
-      <div className="pg-wrap">
-        <h1>Privacy Policy</h1>
+      <div className="pg-wrap pg-narrow" style={{ maxWidth: 760 }}>
+        <PageHeader eyebrow="Privacy" title="Privacy policy" />
         <div className="pg-card">
-          <p>The Campus Wayfinding System stores only the information you submit through the Help form (name, contact details and message) and uses it solely to respond to your request.</p>
-          <p>No location tracking is performed. Map tiles are loaded from OpenStreetMap. Contact support if you want your request removed.</p>
+          <p>We store only what you send through the Help form: your name, contact details and message. We use it only to reply to you.</p>
+          <p style={{ marginBottom: 0 }}>We don't track your location. Map tiles load from OpenStreetMap. Ask us to delete your request any time.</p>
         </div>
       </div>
     </SiteShell>

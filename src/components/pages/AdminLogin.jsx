@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Lock } from "lucide-react";
 import SiteShell from "@/components/layout/SiteShell";
 import { api, setToken } from "@/lib/client";
 
@@ -21,7 +22,7 @@ export default function AdminLogin() {
       setToken(r.token);
       router.push("/admin");
     } catch (err) {
-      setError(err.message);
+      setError(err.message === "Invalid credentials" ? "Wrong username or password." : err.message);
     } finally {
       setLoading(false);
     }
@@ -29,14 +30,15 @@ export default function AdminLogin() {
 
   return (
     <SiteShell>
-      <div className="pg-wrap" style={{ maxWidth: 460 }}>
-        <h1>Admin Login</h1>
-        <p className="pg-sub">Sign in to manage locations, routes and visitor requests.</p>
-        <form className="pg-card" onSubmit={submit}>
-          <div className="pg-field"><label>Username</label><input value={username} onChange={(e) => setUsername(e.target.value)} required autoComplete="username" /></div>
-          <div className="pg-field"><label>Password</label><input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password" /></div>
-          {error && <div className="pg-err">{error}</div>}
-          <button className="pg-btn" disabled={loading}>{loading ? "Signing in..." : "Sign In"}</button>
+      <div className="pg-wrap pg-narrow">
+        <form className="pg-card" onSubmit={submit} style={{ padding: 30 }}>
+          <span className="login-icon"><Lock size={24} /></span>
+          <h2 style={{ fontSize: 26, marginBottom: 4 }}>Admin sign in</h2>
+          <p style={{ color: "#6b635b", margin: "0 0 20px" }}>Manage places, routes and requests.</p>
+          <div className="pg-field"><label htmlFor="u">Username</label><input id="u" value={username} onChange={(e) => setUsername(e.target.value)} required autoComplete="username" autoFocus /></div>
+          <div className="pg-field"><label htmlFor="pw">Password</label><input id="pw" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password" /></div>
+          {error && <div className="pg-msg pg-err" role="alert">{error}</div>}
+          <button className="pg-btn block" disabled={loading}>{loading ? <span className="pg-spin" /> : null}{loading ? "Signing in" : "Sign in"}</button>
         </form>
       </div>
     </SiteShell>

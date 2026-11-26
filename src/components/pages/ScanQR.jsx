@@ -2,10 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Camera, MapPin, Navigation, QrCode } from "lucide-react";
 import SiteShell from "@/components/layout/SiteShell";
+import PageHeader from "@/components/layout/PageHeader";
 import RouteResult from "@/components/RouteResult";
 import LocationInput from "./LocationInput";
+import HowTo from "@/components/layout/HowTo";
 import { api } from "@/lib/client";
+import { popular, friendly } from "@/lib/places";
 
 function extractCode(v) {
   try {
@@ -26,20 +30,26 @@ export default function ScanQR() {
   const [scanning, setScanning] = useState(false);
   const videoRef = useRef(null);
   const streamRef = useRef(null);
+  const result = useRef(null);
 
   useEffect(() => {
     api("/api/locations?limit=200").then((r) => setLocations(r.data)).catch(() => {});
   }, []);
 
+  useEffect(() => {
+    if (route) result.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [route]);
+
   async function lookup(value) {
     setError("");
     setRoute(null);
+    if (!value.trim()) return;
     try {
       const r = await api(`/api/qr/${encodeURIComponent(extractCode(value).trim())}`);
       setHere(r.data);
     } catch (e) {
       setHere(null);
-      setError(e.message);
+      setError(/invalid|not found/i.test(e.message) ? "That code isn't recognised. Check it and try again." : e.message);
     }
   }
 
@@ -58,7 +68,7 @@ export default function ScanQR() {
   async function startScan() {
     setError("");
     if (!("BarcodeDetector" in window) || !navigator.mediaDevices?.getUserMedia) {
-      setError("Camera scanning is not supported in this browser. Enter the code manually.");
+      setError("This browser can't scan QR codes. Type the code instead.");
       return;
     }
     try {
@@ -86,7 +96,7 @@ export default function ScanQR() {
       };
       tick();
     } catch {
-      setError("Could not access the camera. Enter the code manually.");
+      setError("Camera access was blocked. Type the code instead.");
       stop();
     }
   }
@@ -98,38 +108,55 @@ export default function ScanQR() {
       const r = await api(`/api/qr/${encodeURIComponent(here.qrCode || here.code)}?to=${encodeURIComponent(to)}`);
       setRoute(r.route);
     } catch (err) {
-      setError(err.message);
+      setError(friendly(err.message));
     }
   }
 
   return (
     <SiteShell>
       <div className="pg-wrap">
-        <h1>Scan QR</h1>
-        <p className="pg-sub">Scan the QR code at a campus location, or enter its code, to get directions from there.</p>
+        <PageHeader icon={QrCode} eyebrow="Scan QR" title="Scan, then walk" sub="Scan the code at any spot on campus to start from there." />
         <div className="pg-card">
           {scanning && <video ref={videoRef} className="qr-video" muted playsInline />}
-          <div className="pg-field">
-            <label htmlFor="code">QR code or link</label>
-            <input id="code" value={code} onChange={(e) => setCode(e.target.value)} placeholder="block-34" />
-          </div>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <button className="pg-btn" type="button" onClick={() => lookup(code)}>Find Location</button>
+          <div className="qr-actions">
             {scanning
-              ? <button className="pg-btn alt" type="button" onClick={stop}>Stop Camera</button>
-              : <button className="pg-btn alt" type="button" onClick={startScan}>Scan with Camera</button>}
+              ? <button className="pg-btn alt" type="button" onClick={stop}>Stop camera</button>
+              : <button className="pg-btn" type="button" onClick={startScan}><Camera size={19} /> Scan with camera</button>}
           </div>
+          <form onSubmit={(e) => { e.preventDefault(); lookup(code); }} style={{ marginTop: 18 }}>
+            <div className="pg-field">
+              <label htmlFor="code">Or type the code</label>
+              <div style={{ display: "flex", gap: 10 }}>
+                <input id="code" value={code} onChange={(e) => setCode(e.target.value)} placeholder="block-34" style={{ flex: 1 }} />
+                <button className="pg-btn alt">Find</button>
+              </div>
+            </div>
+          </form>
         </div>
-        {error && <div className="pg-err">{error}</div>}
+        {error && <div className="pg-msg pg-err" role="alert">{error}</div>}
         {here && (
           <form className="pg-card" onSubmit={getRoute}>
-            <h2 style={{ fontSize: 22, fontWeight: 800 }}>You are at: {here.name}</h2>
-            <p className="pg-sub">{here.description || `${here.type} (${here.code})`}</p>
-            <LocationInput id="qr-to" label="Where do you want to go?" value={to} onChange={setTo} options={locations} placeholder="Room 34-305" />
-            <button className="pg-btn">Get Directions</button>
+            <div className="here" style={{ marginBottom: 18 }}>
+              <span className="here-pin"><MapPin size={22} /></span>
+              <div>
+                <div className="pg-eyebrow" style={{ margin: 0 }}>You are at</div>
+                <h2>{here.name}</h2>
+                {here.description && <p>{here.description}</p>}
+              </div>
+            </div>
+            <LocationInput id="qr-to" label="Where to?" value={to} onChange={setTo} options={locations} placeholder="Block 34" />
+            {locations.length > 0 && (
+              <div className="chips" style={{ marginBottom: 18 }}>
+                {popular(locations).map((l) => (
+                  <button type="button" key={l._id} className={`chip ${to === l.name ? "on" : ""}`} onClick={() => setTo(l.name)}>{l.name}</button>
+                ))}
+              </div>
+            )}
+            <button className="pg-btn"><Navigation size={18} /> Get directions</button>
           </form>
         )}
-        <RouteResult route={route} />
+        <RouteResult route={route} innerRef={result} />
+        {!here && <HowTo steps={[["Scan", "Point your camera at a Campus Wayfinding QR code."], ["Choose", "Tell us where you want to go."], ["Walk", "Get directions starting from the exact spot you scanned."]]} />}
       </div>
     </SiteShell>
   );

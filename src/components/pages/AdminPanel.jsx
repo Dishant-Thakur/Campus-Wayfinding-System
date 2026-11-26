@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import SiteShell from "@/components/layout/SiteShell";
+import PageHeader from "@/components/layout/PageHeader";
 import MapPicker from "./MapPicker";
 import { api, authHeader, clearToken, getToken } from "@/lib/client";
 
@@ -106,33 +107,42 @@ export default function AdminPanel() {
 
   if (!ready) return null;
 
+  const openCount = requests.filter((r) => r.status === "open").length;
+  const tabs = [["requests", `Requests${openCount ? ` (${openCount})` : ""}`], ["locations", "Locations"], ["edges", "Connections"]];
+
   return (
     <SiteShell>
       <div className="pg-wrap">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10 }}>
-          <h1>Admin Panel</h1>
-          <button className="pg-btn alt" onClick={() => { clearToken(); router.push("/admin/login"); }}>Log out</button>
+        <div className="adm-top">
+          <PageHeader eyebrow="Admin" title="Dashboard" />
+          <button className="pg-btn alt" style={{ marginBottom: 26 }} onClick={() => { clearToken(); router.push("/admin/login"); }}>Log out</button>
         </div>
-        <div className="pg-tabs">
-          {[["requests", `Requests (${requests.length})`], ["locations", `Locations (${locations.length})`], ["edges", `Connections (${edges.length})`]].map(([k, v]) => (
-            <button key={k} className={`pg-btn ${tab === k ? "" : "alt"}`} onClick={() => setTab(k)}>{v}</button>
+        <div className="adm-stats">
+          <div className="adm-stat"><b>{openCount}</b><span>Open requests</span></div>
+          <div className="adm-stat"><b>{locations.length}</b><span>Locations</span></div>
+          <div className="adm-stat"><b>{edges.length}</b><span>Connections</span></div>
+        </div>
+        <div className="tabs" role="tablist">
+          {tabs.map(([k, v]) => (
+            <button key={k} role="tab" aria-selected={tab === k} className={`tab ${tab === k ? "on" : ""}`} onClick={() => setTab(k)}>{v}</button>
           ))}
         </div>
-        {error && <div className="pg-err">{error}</div>}
+        {error && <div className="pg-msg pg-err" role="alert">{error}</div>}
 
         {tab === "requests" && (
           <div className="pg-card pg-table-wrap">
             <table className="pg-table">
-              <thead><tr><th>Visitor</th><th>Type</th><th>Message</th><th>Location</th><th>Status</th></tr></thead>
+              <thead><tr><th>Visitor</th><th>Type</th><th>Message</th><th>Place</th><th>Status</th></tr></thead>
               <tbody>
                 {requests.map((r) => (
                   <tr key={r._id}>
                     <td>{r.name}<br /><small>{r.email} {r.phone}</small></td>
-                    <td>{r.type}</td>
+                    <td style={{ textTransform: "capitalize" }}>{r.type}</td>
                     <td>{r.message}</td>
                     <td>{r.location?.name || "-"}</td>
                     <td>
-                      <select value={r.status} onChange={(e) => run(() => call(`/api/requests/${r._id}`, { method: "PATCH", body: JSON.stringify({ status: e.target.value }) }))}>
+                      <span className={`badge b-${r.status}`}>{r.status.replace("_", " ")}</span>
+                      <select aria-label="Change status" value={r.status} style={{ display: "block", marginTop: 6, borderRadius: 8, padding: "4px 6px" }} onChange={(e) => run(() => call(`/api/requests/${r._id}`, { method: "PATCH", body: JSON.stringify({ status: e.target.value }) }))}>
                         <option value="open">Open</option>
                         <option value="in_progress">In progress</option>
                         <option value="resolved">Resolved</option>
@@ -140,7 +150,7 @@ export default function AdminPanel() {
                     </td>
                   </tr>
                 ))}
-                {!requests.length && <tr><td colSpan={5}>No requests yet.</td></tr>}
+                {!requests.length && <tr><td colSpan={5} className="pg-empty">No requests yet.</td></tr>}
               </tbody>
             </table>
           </div>
@@ -154,7 +164,7 @@ export default function AdminPanel() {
               onPick={(lat, lng) => setLoc((p) => ({ ...p, lat: lat.toFixed(6), lng: lng.toFixed(6) }))}
             />
             <form className="pg-card" onSubmit={addLocation}>
-              <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 14 }}>Add Location</h2>
+              <h2>Add a place</h2>
               <div className="pg-grid">
                 <div className="pg-field"><label>Name</label><input value={loc.name} onChange={(e) => setLoc({ ...loc, name: e.target.value })} required /></div>
                 <div className="pg-field"><label>Code (unique)</label><input value={loc.code} onChange={(e) => setLoc({ ...loc, code: e.target.value })} required /></div>
@@ -163,7 +173,7 @@ export default function AdminPanel() {
                     {["gate", "block", "room", "landmark", "facility"].map((t) => <option key={t}>{t}</option>)}
                   </select>
                 </div>
-                <div className="pg-field"><label>Parent block (for rooms)</label>
+                <div className="pg-field"><label>Parent block (rooms only)</label>
                   <select value={loc.parent} onChange={(e) => setLoc({ ...loc, parent: e.target.value })}>
                     <option value="">None</option>
                     {blocks.map((b) => <option key={b._id} value={b._id}>{b.name}</option>)}
@@ -174,8 +184,12 @@ export default function AdminPanel() {
                 <div className="pg-field"><label>Latitude</label><input type="number" step="any" value={loc.lat} onChange={(e) => setLoc({ ...loc, lat: e.target.value })} /></div>
                 <div className="pg-field"><label>Longitude</label><input type="number" step="any" value={loc.lng} onChange={(e) => setLoc({ ...loc, lng: e.target.value })} /></div>
               </div>
-              <label className="pg-check"><input type="checkbox" checked={autoConnect} onChange={(e) => setAutoConnect(e.target.checked)} /> Auto-connect to the 3 nearest locations</label>
-              <button className="pg-btn">Add Location</button>
+              <label className="switch" style={{ marginBottom: 18 }}>
+                <input type="checkbox" checked={autoConnect} onChange={(e) => setAutoConnect(e.target.checked)} />
+                <span className="switch-ui" />
+                Connect to the 3 nearest places
+              </label>
+              <button className="pg-btn">Add place</button>
             </form>
             <div className="pg-card pg-table-wrap">
               <table className="pg-table">
@@ -183,7 +197,7 @@ export default function AdminPanel() {
                 <tbody>
                   {locations.map((l) => (
                     <tr key={l._id}>
-                      <td>{l.name}</td><td>{l.code}</td><td>{l.type}</td><td>{l.floor ?? "-"}</td>
+                      <td>{l.name}</td><td>{l.code}</td><td style={{ textTransform: "capitalize" }}>{l.type}</td><td>{l.floor ?? "-"}</td>
                       <td><button className="pg-btn sm danger" onClick={() => confirm(`Delete ${l.name}?`) && run(() => call(`/api/locations/${l._id}`, { method: "DELETE" }))}>Delete</button></td>
                     </tr>
                   ))}
@@ -196,7 +210,7 @@ export default function AdminPanel() {
         {tab === "edges" && (
           <>
             <form className="pg-card" onSubmit={addEdge}>
-              <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 14 }}>Add Connection</h2>
+              <h2>Add a connection</h2>
               <div className="pg-grid">
                 <div className="pg-field"><label>From</label>
                   <select value={edge.from} onChange={(e) => setEdge({ ...edge, from: e.target.value })} required>
@@ -213,8 +227,12 @@ export default function AdminPanel() {
                 <div className="pg-field"><label>Distance (m)</label><input type="number" min="1" value={edge.distance} onChange={(e) => setEdge({ ...edge, distance: e.target.value })} required /></div>
                 <div className="pg-field"><label>Instruction (optional)</label><input value={edge.instruction} onChange={(e) => setEdge({ ...edge, instruction: e.target.value })} /></div>
               </div>
-              <label className="pg-check"><input type="checkbox" checked={edge.accessible} onChange={(e) => setEdge({ ...edge, accessible: e.target.checked })} /> Accessible path</label>
-              <button className="pg-btn">Add Connection</button>
+              <label className="switch" style={{ marginBottom: 18 }}>
+                <input type="checkbox" checked={edge.accessible} onChange={(e) => setEdge({ ...edge, accessible: e.target.checked })} />
+                <span className="switch-ui" />
+                Accessible path
+              </label>
+              <button className="pg-btn">Add connection</button>
             </form>
             <div className="pg-card pg-table-wrap">
               <table className="pg-table">

@@ -86,7 +86,7 @@ export default function MapPicker({ locations, point, onPick }) {
   return (
     <div className="pg-card" style={{ padding: 0, overflow: "hidden" }}>
       <div style={{ padding: "12px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
-        <span><strong>Click the map</strong> to set the position of the new location. Orange pins already exist, the green pin is your selection.</span>
+        <span><strong>Click the map</strong> to place it. Orange pins exist already, green is your pick.</span>
         <button type="button" className="pg-btn alt sm" onClick={() => setSat(!sat)}>{sat ? "Show street map" : "Show satellite"}</button>
       </div>
       <div ref={el} style={{ height: 420 }} />

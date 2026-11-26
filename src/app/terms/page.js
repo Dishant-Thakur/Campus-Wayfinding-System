@@ -1,15 +1,16 @@
 import SiteShell from "@/components/layout/SiteShell";
+import PageHeader from "@/components/layout/PageHeader";
 
-export const metadata = { title: "Terms of Use | Campus Wayfinding" };
+export const metadata = { title: "Terms of use | Campus Wayfinding" };
 
 export default function Page() {
   return (
     <SiteShell>
-      <div className="pg-wrap">
-        <h1>Terms of Use</h1>
+      <div className="pg-wrap pg-narrow" style={{ maxWidth: 760 }}>
+        <PageHeader eyebrow="Terms" title="Terms of use" />
         <div className="pg-card">
-          <p>This system is provided to help students and visitors find their way around the LPU campus. Routes and distances are estimates and should be used as guidance only.</p>
-          <p>Misuse of the visitor assistance service or the administrator interface is not permitted.</p>
+          <p>This system helps students and visitors find their way around campus. Routes and times are estimates, so treat them as guidance.</p>
+          <p style={{ marginBottom: 0 }}>Please don't misuse the help service or the admin area.</p>
         </div>
       </div>
     </SiteShell>
